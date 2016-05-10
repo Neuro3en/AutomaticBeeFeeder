@@ -1,0 +1,35 @@
+
+/*
+angepasst für timS FÜTTERMASCHIENE
+
+ */
+
+#include <Stepper.h>
+
+const int stepsPerRevolution = 64;  // change this to fit the number of steps per revolution
+// for your motor
+
+// initialize the stepper library on pins 8 through 11:
+Stepper myStepper(stepsPerRevolution, 8, 9, 10, 11);
+
+void setup() {
+    pinMode(4,INPUT);
+
+  // set the speed at 60 rpm:
+  myStepper.setSpeed(60);
+  // initialize the serial port:
+}
+
+void loop() {
+  // step one revolution  in one direction:
+  if (digitalRead(4)==HIGH){
+  if (analogRead(A0)<400){
+  myStepper.step(-stepsPerRevolution);
+  }
+}
+  if (digitalRead(4)==LOW){
+    myStepper.step(stepsPerRevolution);
+
+  }
+
+}
